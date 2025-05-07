@@ -28,3 +28,14 @@ Berikut adalah tangkapan layar dari halaman `Overview` pada RabbitMQ Management 
 
 Grafik menunjukkan adanya lonjakan (spike) pada bagian **Message rates**, khususnya pada kolom **Deliver (manual ack)** dan **Consumer ack**, yang ditampilkan dalam warna ungu dan oranye. Lonjakan ini merepresentasikan aktivitas saat publisher mengirimkan batch event ke broker RabbitMQ, dan subscriber kemudian menerima serta memproses pesan tersebut. Setiap kali perintah `cargo run` dijalankan pada publisher, lima pesan dikirim secara bersamaan dan menyebabkan peningkatan mendadak dalam rate pengiriman serta konsumsi pesan. Ini membuktikan bahwa sistem event-driven berjalan sebagaimana mestinya, dan interaksi antara publisher, broker, serta subscriber berhasil direkam secara visual.
 
+### Screenshot - Simulating Slow Subscriber
+
+Berikut tangkapan layar RabbitMQ Management UI saat mensimulasikan subscriber yang lambat:
+
+![Simulation of Slow Subscriber](images/SimulationSlowSubscriber.png)
+
+Dalam simulasi ini, kita menambahkan delay `1 detik` (`thread::sleep(ten_millis)`) pada setiap proses pesan yang diterima oleh subscriber. Akibatnya, subscriber menjadi bottleneck dan tidak dapat memproses pesan secepat publisher mengirimkannya. Hal ini terlihat dari grafik **Queued messages** yang menunjukkan jumlah pesan dalam antrian sempat melonjak hingga sekitar 15 pesan. 
+
+Kondisi ini menggambarkan skenario nyata seperti saat SIAK mengalami overload karena terlalu banyak mahasiswa mengakses dalam waktu bersamaan, tetapi sistem backend tidak cukup cepat untuk memprosesnya. Solusi umum untuk masalah seperti ini dalam sistem nyata adalah melakukan horizontal scaling pada consumer atau menerapkan rate-limiting dan backpressure pada publisher.
+
+
