@@ -11,3 +11,11 @@ Penggunaan URL amqp://guest:guest@localhost:5672 yang sama di publisher dan subs
 ### Screenshot: RabbitMQ Running in Localhost
 
 ![RabbitMQ berjalan di localhost](images/RabbitMQrunning.png)
+
+### Screenshot - Sending and Receiving Messages
+
+Berikut adalah tangkapan layar saat publisher mengirim 5 event ke RabbitMQ dan subscriber menerima pesan-pesan tersebut.
+
+![Sending and Receiving Messages](images/SendingReceivingMessages.png)
+
+Saat perintah `cargo run` dijalankan di direktori `publisher`, program akan membuat lima `UserCreatedEventMessage` dan mengirimkannya ke message broker (RabbitMQ) melalui channel `user_created`. Jika subscriber berjalan dengan benar dan terhubung ke queue yang sama, ia akan menerima dan mencetak kelima pesan tersebut ke terminal.
