@@ -7,3 +7,7 @@ Dalam satu kali eksekusi, program publisher akan mengirimkan lima buah pesan ke 
 Penggunaan URL amqp://guest:guest@localhost:5672 yang sama di publisher dan subscriber menunjukkan bahwa keduanya berkomunikasi dengan message broker (dalam hal ini RabbitMQ) yang sama. guest:guest adalah username dan password default untuk otentikasi, sedangkan localhost menunjukkan bahwa RabbitMQ dijalankan secara lokal di komputer yang sama, dan 5672 adalah port default untuk protokol AMQP. Dengan demikian, publisher dan subscriber terhubung ke broker yang sama untuk saling bertukar pesan melalui antrian yang telah ditentukan.
 
 </details>
+
+### Screenshot: RabbitMQ Running in Localhost
+
+![RabbitMQ berjalan di localhost](images/RabbitMQrunning.png)
