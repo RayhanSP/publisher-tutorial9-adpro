@@ -19,3 +19,12 @@ Berikut adalah tangkapan layar saat publisher mengirim 5 event ke RabbitMQ dan s
 ![Sending and Receiving Messages](images/SendingReceivingMessages.png)
 
 Saat perintah `cargo run` dijalankan di direktori `publisher`, program akan membuat lima `UserCreatedEventMessage` dan mengirimkannya ke message broker (RabbitMQ) melalui channel `user_created`. Jika subscriber berjalan dengan benar dan terhubung ke queue yang sama, ia akan menerima dan mencetak kelima pesan tersebut ke terminal.
+
+### Screenshot - Spikes on RabbitMQ Message Rate Chart
+
+Berikut adalah tangkapan layar dari halaman `Overview` pada RabbitMQ Management UI setelah beberapa kali menjalankan program publisher.
+
+![Spikes on Chart](images/SpikesOnChart.png)
+
+Grafik menunjukkan adanya lonjakan (spike) pada bagian **Message rates**, khususnya pada kolom **Deliver (manual ack)** dan **Consumer ack**, yang ditampilkan dalam warna ungu dan oranye. Lonjakan ini merepresentasikan aktivitas saat publisher mengirimkan batch event ke broker RabbitMQ, dan subscriber kemudian menerima serta memproses pesan tersebut. Setiap kali perintah `cargo run` dijalankan pada publisher, lima pesan dikirim secara bersamaan dan menyebabkan peningkatan mendadak dalam rate pengiriman serta konsumsi pesan. Ini membuktikan bahwa sistem event-driven berjalan sebagaimana mestinya, dan interaksi antara publisher, broker, serta subscriber berhasil direkam secara visual.
+
