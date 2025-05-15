@@ -1,5 +1,7 @@
 # Ignore hasil build
 /target/
+.target/
+target/
 
 # Ignore file config lokal VSCode & IntelliJ
 /.vscode/
